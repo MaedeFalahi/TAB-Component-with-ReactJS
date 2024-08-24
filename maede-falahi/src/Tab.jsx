@@ -1,22 +1,22 @@
-import React , {useState , useEffect} from 'react'
-import styles from "./Tab.module.css"
+import React , {useState , useEffect} from 'react';
+import styles from "./Tab.module.css";
+
 function Tab() {
-    const [toggleState, setToggleState] = useState(1);
 
-
-    const [data, setData] = useState([]);
+    const items = localStorage.getItem('items');
+    const [toggleState, setToggleState] = useState(JSON.parse(items));
 
     useEffect(() => {
       localStorage.setItem('items', JSON.stringify(toggleState));
     }, [toggleState]);
 
-    const items = localStorage.getItem('items');
     console.log(items)
 
-    const toggleTab = (index) => {
+    const toggleTab = (index ) => {
       setToggleState(index);
     };
-  
+   
+    
     const getActiveClass = (index, className) =>
       toggleState === index ? className : "";
 
